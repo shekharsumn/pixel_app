@@ -20,6 +20,7 @@ class LandingBottomDrawer extends StatelessWidget {
               const Text(
                 'Welcome!',
                 style: TextStyle(
+                  fontFamily: 'EB Garamond',
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
@@ -29,8 +30,9 @@ class LandingBottomDrawer extends StatelessWidget {
               const Text(
                 'Text text text text',
                 style: TextStyle(
+                  fontFamily: 'EB Garamond',
                   fontSize: 16,
-                  color: Colors.grey,
+                  color: Colors.white,
                 ),
               ),
               const SizedBox(height: 24),
@@ -41,10 +43,15 @@ class LandingBottomDrawer extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.amber,
                   minimumSize: const Size(double.infinity, 50),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                        10.0), // Adjust the radius as needed
+                  ),
                 ),
                 child: const Text(
                   'Scan bottle',
                   style: TextStyle(
+                    fontFamily: 'EB Garamond',
                     color: Colors.black,
                     fontSize: 18,
                   ),
@@ -57,17 +64,22 @@ class LandingBottomDrawer extends StatelessWidget {
                   const Text(
                     'Have an account?',
                     style: TextStyle(
-                      color: Colors.grey,
+                      fontFamily: 'Lato',
+                      color: Colors.white,
+                      fontSize: 16,
                     ),
                   ),
                   TextButton(
                     onPressed: () {
                       // Handle sign in action
+                      Navigator.pushNamed(context, '/signin'); // Change route as needed
                     },
                     child: const Text(
                       'Sign in first',
                       style: TextStyle(
+                        fontFamily: 'EB Garamond',
                         color: Colors.amber,
+                        fontSize: 16,
                       ),
                     ),
                   ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:one_cask/screens/home_screen.dart';
+import 'package:one_cask/screens/signin_screen.dart';
 import 'package:one_cask/screens/splash_screen.dart';
 import 'app_router.dart';
 
@@ -18,7 +19,9 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => SplashScreen(),
-        '/signup': (context) =>
+        '/signin': (context) =>
+            SignInScreen(),
+        '/home': (context) =>
             HomeScreen(), // Replace with your actual home screen
       },
       onGenerateRoute: AppRouter.generateRoute,
