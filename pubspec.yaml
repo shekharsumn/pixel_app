@@ -27,6 +27,8 @@ flutter:
   assets:
     - assets/splash_bg.png
     - assets/ic_logo.png
+    - assets/whisky1.png
+
   fonts:
     - family: EB Garamond
       fonts:

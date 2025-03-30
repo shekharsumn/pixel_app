@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:one_cask/styles/app_color.dart';
 
 class LandingBottomDrawer extends StatelessWidget {
   const LandingBottomDrawer({super.key});
@@ -11,7 +12,7 @@ class LandingBottomDrawer extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.all(24.0),
           decoration: const BoxDecoration(
-            color: Color(0xFF1E272C),
+            color: AppColor.primary,
             borderRadius: BorderRadius.vertical(top: Radius.circular(16.0)),
           ),
           child: Column(

@@ -50,7 +50,7 @@ class SignInScreen extends StatelessWidget {
                   style: textStyle16,
                 )),
               );
-              Navigator.of(context).pop(); // Go back after success
+              Navigator.pushNamed(context, '/home'); // Change route as needed
             } else if (state is SignInFailure) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(

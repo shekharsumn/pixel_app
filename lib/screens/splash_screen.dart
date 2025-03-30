@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:one_cask/styles/app_color.dart';
 import 'package:one_cask/widgets/landing_drawer.dart';
 import '../blocs/splashscreen/splash_cubit.dart';
 
@@ -98,7 +99,7 @@ class SplashScreenState extends State<SplashScreen>
           onTap: _handleOutsideTap,
           behavior: HitTestBehavior.opaque,
           child: Scaffold(
-            backgroundColor: const Color(0xFF0B1519),
+            backgroundColor: AppColor.primary,
             body: Stack(
               children: [
                 Positioned.fill(
