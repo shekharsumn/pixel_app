@@ -61,10 +61,10 @@ class WhiskyCubit extends Cubit<WhiskyState> {
       ),
       Whisky(
         name: 'Springbank',
-        year: '1992',
-        number: '#1234',
+        year: 'Springbank',
+        number: 'Springbank',
         imageUrl: 'assets/whisky1.png', // Replace with your image path
-        quantity: '(112/158)',
+        quantity: '',
       ),
       Whisky(
         name: 'Springbank',
