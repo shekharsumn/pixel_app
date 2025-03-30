@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:one_cask/styles/app_color.dart';
 import 'package:one_cask/styles/ebgaramond.dart';
 
@@ -128,7 +129,7 @@ class HomeScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => WhiskyCubit()..loadWhiskies(),
       child: Scaffold(
-        backgroundColor: AppColor.card_bg,
+        backgroundColor: AppColor.cardBg,
         appBar: AppBar(
           title: Text(
             'My collection',
@@ -137,7 +138,7 @@ class HomeScreen extends StatelessWidget {
               fontSize: 32, color: Colors.white, fontWeight: FontWeight.w500),
           centerTitle: false,
           leadingWidth: 0,
-          backgroundColor: AppColor.primary_bg,
+          backgroundColor: AppColor.primaryBg,
           actions: [
             Stack(
               children: [
@@ -170,7 +171,7 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
         body: Container(
-          color: AppColor.primary_bg,
+          color: AppColor.primaryBg,
           child: BlocBuilder<WhiskyCubit, WhiskyState>(
             builder: (context, state) {
               return GridView.builder(
@@ -186,7 +187,7 @@ class HomeScreen extends StatelessWidget {
                   final whisky = state.whiskies[index];
                   return Container(
                     decoration: BoxDecoration(
-                      color: AppColor.card_bg, // Dark background
+                      color: AppColor.cardBg, // Dark background
                       borderRadius: BorderRadius.circular(2),
                     ),
                     child: SizedBox(
@@ -260,23 +261,23 @@ class HomeScreen extends StatelessWidget {
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.transparent,
           currentIndex: 1,
-          items: const <BottomNavigationBarItem>[
+          items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-                icon: Icon(Icons.crop_free),
+                icon: SvgPicture.asset('assets/ic_scan.svg'),
                 label: 'Scan',
-                backgroundColor: AppColor.primary_bg),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.grid_view),
+                backgroundColor: AppColor.primaryBg),
+             BottomNavigationBarItem(
+                icon: SvgPicture.asset('assets/ic_collection.svg'),
                 label: 'Collection',
-                backgroundColor: AppColor.primary_bg),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_bag),
+                backgroundColor: AppColor.primaryBg),
+             BottomNavigationBarItem(
+                icon: SvgPicture.asset('assets/ic_bottle.svg'),
                 label: 'Shop',
-                backgroundColor: AppColor.primary_bg),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.settings),
+                backgroundColor: AppColor.primaryBg),
+             BottomNavigationBarItem(
+                icon: SvgPicture.asset('assets/ic_setting.svg'),
                 label: 'Settings',
-                backgroundColor: AppColor.primary_bg),
+                backgroundColor: AppColor.primaryBg),
           ],
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.grey,

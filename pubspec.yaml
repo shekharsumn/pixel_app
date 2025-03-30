@@ -1,6 +1,6 @@
 name: "one_cask"
 description: "A Flutter App."
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
@@ -28,6 +28,10 @@ flutter:
     - assets/splash_bg.png
     - assets/ic_logo.png
     - assets/whisky1.png
+    - assets/ic_bottle.svg
+    - assets/ic_collection.svg
+    - assets/ic_scan.svg
+    - assets/ic_setting.svg
 
   fonts:
     - family: EB Garamond
@@ -41,7 +45,6 @@ flutter_icons:
   image_path: "assets/ic_logo.png" # Path to your icon
   adaptive_icon_background: "#0B1519" # Background color for Android adaptive icon
   adaptive_icon_foreground: "assets/ic_logo.png"
-
 
 flutter_native_splash:
   color: "#0B1519"
