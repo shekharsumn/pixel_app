@@ -1,124 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:one_cask/blocs/lIstscreen/list_screen_cubit.dart';
+import 'package:one_cask/blocs/lIstscreen/list_screen_state.dart';
+import 'package:one_cask/screens/detail_screen.dart';
 import 'package:one_cask/styles/app_color.dart';
 import 'package:one_cask/styles/ebgaramond.dart';
-
-// --- Data Model ---
-class Whisky {
-  final String name;
-  final String year;
-  final String number;
-  final String imageUrl;
-  final String quantity;
-
-  Whisky({
-    required this.name,
-    required this.year,
-    required this.number,
-    required this.imageUrl,
-    required this.quantity,
-  });
-}
-
-// --- Cubit State ---
-class WhiskyState {
-  final List<Whisky> whiskies;
-
-  WhiskyState({required this.whiskies});
-
-  WhiskyState copyWith({List<Whisky>? whiskies}) {
-    return WhiskyState(whiskies: whiskies ?? this.whiskies);
-  }
-}
-
-// --- Cubit ---
-class WhiskyCubit extends Cubit<WhiskyState> {
-  WhiskyCubit() : super(WhiskyState(whiskies: []));
-
-  void loadWhiskies() {
-    // Simulate loading data (replace with your actual data fetching)
-    emit(state.copyWith(whiskies: [
-      Whisky(
-        name: 'Springbank',
-        year: '1992',
-        number: '#1234',
-        imageUrl: 'assets/whisky1.png', // Replace with your image path
-        quantity: '(112/158)',
-      ),
-      Whisky(
-        name: 'Springbank',
-        year: '1992',
-        number: '#1234',
-        imageUrl: 'assets/whisky1.png', // Replace with your image path
-        quantity: '(112/158)',
-      ),
-      Whisky(
-        name: 'Springbank',
-        year: '1992',
-        number: '#1234',
-        imageUrl: 'assets/whisky1.png', // Replace with your image path
-        quantity: '(112/158)',
-      ),
-      Whisky(
-        name: 'Springbank',
-        year: '1992',
-        number: '#1234',
-        imageUrl: 'assets/whisky1.png', // Replace with your image path
-        quantity: '(112/158)',
-      ),
-      Whisky(
-        name: 'Springbank',
-        year: '1992',
-        number: '#1234',
-        imageUrl: 'assets/whisky1.png', // Replace with your image path
-        quantity: '(112/158)',
-      ),
-      Whisky(
-        name: 'Springbank',
-        year: '1992',
-        number: '#1234',
-        imageUrl: 'assets/whisky1.png', // Replace with your image path
-        quantity: '(112/158)',
-      ),
-      Whisky(
-        name: 'Springbank',
-        year: '1992',
-        number: '#1234',
-        imageUrl: 'assets/whisky1.png', // Replace with your image path
-        quantity: '(112/158)',
-      ),
-      Whisky(
-        name: 'Springbank',
-        year: '1992',
-        number: '#1234',
-        imageUrl: 'assets/whisky1.png', // Replace with your image path
-        quantity: '(112/158)',
-      ),
-      Whisky(
-        name: 'Springbank',
-        year: '1992',
-        number: '#1234',
-        imageUrl: 'assets/whisky1.png', // Replace with your image path
-        quantity: '(112/158)',
-      ),
-      Whisky(
-        name: 'Springbank',
-        year: '1992',
-        number: '#1234',
-        imageUrl: 'assets/whisky1.png', // Replace with your image path
-        quantity: '(112/158)',
-      ),
-      Whisky(
-        name: 'Springbank',
-        year: '1992',
-        number: '#1234',
-        imageUrl: 'assets/whisky1.png', // Replace with your image path
-        quantity: '(112/158)',
-      ),
-    ]));
-  }
-}
 
 // --- Home Screen ---
 class HomeScreen extends StatelessWidget {
@@ -185,71 +72,83 @@ class HomeScreen extends StatelessWidget {
                 itemCount: state.whiskies.length,
                 itemBuilder: (context, index) {
                   final whisky = state.whiskies[index];
-                  return Container(
-                    decoration: BoxDecoration(
-                      color: AppColor.cardBg, // Dark background
-                      borderRadius: BorderRadius.circular(2),
-                    ),
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.3,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            // Make image take 70% of height
-                            flex: 7, // 80%
-                            child: Center(
-                              child: Image.asset(
-                                whisky.imageUrl,
-                                fit: BoxFit.cover, // Adjust fit as needed
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => WhiskyDetailsScreen(
+                              whisky: whisky), // Pass the Whisky object
+                        ),
+                      );
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: AppColor.cardBg, // Dark background
+                        borderRadius: BorderRadius.circular(2),
+                      ),
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.3,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              // Make image take 70% of height
+                              flex: 7, // 80%
+                              child: Center(
+                                child: Image.asset(
+                                  whisky.imageUrl,
+                                  fit: BoxFit.cover, // Adjust fit as needed
+                                ),
                               ),
                             ),
-                          ),
-                          Expanded(
-                            // Make text take 30% of height
-                            flex: 3, // 20%
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        whisky.name,
-                                        style: ebGaramondTitleStyle(
-                                            fontSize: 22, color: Colors.white),
-                                        textAlign: TextAlign.start,
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        '${whisky.year} ${whisky.number}',
-                                        style: ebGaramondTitleStyle(
-                                            fontSize: 22, color: Colors.white),
-                                        textAlign: TextAlign.start,
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        whisky.quantity,
-                                        style:
-                                            ebGaramondTitleStyle(
-                                            fontSize: 12, color: Colors.grey),
-                                        textAlign: TextAlign.start,
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                            Expanded(
+                              // Make text take 30% of height
+                              flex: 3, // 20%
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          whisky.name,
+                                          style: ebGaramondTitleStyle(
+                                              fontSize: 22,
+                                              color: Colors.white),
+                                          textAlign: TextAlign.start,
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          '${whisky.year} ${whisky.number}',
+                                          style: ebGaramondTitleStyle(
+                                              fontSize: 22,
+                                              color: Colors.white),
+                                          textAlign: TextAlign.start,
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          whisky.quantity,
+                                          style: ebGaramondTitleStyle(
+                                              fontSize: 12, color: Colors.grey),
+                                          textAlign: TextAlign.start,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   );
@@ -266,15 +165,15 @@ class HomeScreen extends StatelessWidget {
                 icon: SvgPicture.asset('assets/ic_scan.svg'),
                 label: 'Scan',
                 backgroundColor: AppColor.primaryBg),
-             BottomNavigationBarItem(
+            BottomNavigationBarItem(
                 icon: SvgPicture.asset('assets/ic_collection.svg'),
                 label: 'Collection',
                 backgroundColor: AppColor.primaryBg),
-             BottomNavigationBarItem(
+            BottomNavigationBarItem(
                 icon: SvgPicture.asset('assets/ic_bottle.svg'),
                 label: 'Shop',
                 backgroundColor: AppColor.primaryBg),
-             BottomNavigationBarItem(
+            BottomNavigationBarItem(
                 icon: SvgPicture.asset('assets/ic_setting.svg'),
                 label: 'Settings',
                 backgroundColor: AppColor.primaryBg),
