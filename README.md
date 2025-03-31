@@ -3,6 +3,9 @@
 ## Description
 One Cask is a Flutter application designed for whisky enthusiasts. It provides an intuitive interface to explore whisky collections, scan bottles, and manage personal whisky collections. The app features a sleek design with custom icons, animations, and a splash screen for a refined user experience.
 
+## Demo Video
+Here is the link for the demo of this app - https://vimeo.com/1070887851?share=copy
+
 ## Features
 - User authentication (Sign In screen)
 - Whisky collection browsing and management
