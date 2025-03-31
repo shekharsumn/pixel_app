@@ -1,5 +1,3 @@
-// whisky_details_screen.dart
-
 import 'package:flutter/material.dart';
 import 'package:one_cask/model/whisky_model.dart';
 import 'package:one_cask/styles/app_color.dart';
@@ -34,43 +32,53 @@ class WhiskyDetailsScreenState extends State<WhiskyDetailsScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.primaryBg,
-        appBar: AppBar(
-          title: Row(
-            children: [
-              Text('Genesis Collection'),
-            ],
-          ),
-          leadingWidth: 0,
-          titleTextStyle: ebGaramondTitleStyle(
-              fontSize: 16, color: Colors.white, fontWeight: FontWeight.w500),
-          centerTitle: false,
-          backgroundColor: AppColor.primaryBg,
-          actions: [
-            IconButton(
-              icon: Icon(Icons.close, color: Colors.white),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
+      backgroundColor: AppColor.primaryBg,
+      appBar: AppBar(
+        title: Row(
+          children: [
+            Text('Genesis Collection'),
           ],
         ),
-        body: Container(
+        leadingWidth: 0,
+        titleTextStyle: ebGaramondTitleStyle(
+            fontSize: 16, color: Colors.white, fontWeight: FontWeight.w500),
+        centerTitle: false,
+        backgroundColor: AppColor.primaryBg,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.close, color: Colors.white),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Container(
           color: AppColor.primary,
-          child: Stack(children: [
-            Positioned.fill(
-              child: Image.asset(
-                'assets/splash_bg.png',
-                fit: BoxFit.cover,
+          child: Stack(
+            children: [
+              Positioned.fill(
+                child: Image.asset(
+                  'assets/splash_bg.png',
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  GenuineBottleWidget(),
-                  Expanded(
-                    child: Card(
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    GenuineBottleWidget(),
+                    SizedBox(
+                      height: 450,
+                      child: Center(
+                        child: Image.asset(
+                          'assets/whisky1.png',
+                          fit: BoxFit.cover, // Adjust fit as needed
+                        ),
+                      ),
+                    ),
+                    Card(
                       elevation: 4,
                       color: AppColor.cardBg,
                       child: Column(
@@ -124,67 +132,72 @@ class WhiskyDetailsScreenState extends State<WhiskyDetailsScreen>
                                   Tab(text: 'Tasting notes'),
                                   Tab(text: 'History'),
                                 ],
-                                labelColor: Colors.black, // Updated label color
+                                labelColor: Colors.black,
                                 unselectedLabelColor: Colors.grey,
                                 indicator: BoxDecoration(
-                                  // Custom indicator
-                                  color:
-                                      Colors.amber, // Updated indicator color
-                                  borderRadius: BorderRadius.circular(
-                                      5), // Rounded corners
+                                  color: Colors.amber,
+                                  borderRadius: BorderRadius.circular(5),
                                 ),
-                                indicatorSize: TabBarIndicatorSize
-                                    .tab, // Indicator size to tab
+                                indicatorSize: TabBarIndicatorSize.tab,
                                 indicatorPadding: EdgeInsets.symmetric(
-                                    horizontal: 4.0,
-                                    vertical: 6.0), // Padding for indicator
-                                labelPadding: EdgeInsets.symmetric(
-                                    horizontal: 4.0), // Padding for labels
-                                labelStyle: TextStyle(
-                                    fontWeight: FontWeight.bold), // Bold labels
+                                    horizontal: 4.0, vertical: 6.0),
+                                labelPadding:
+                                    EdgeInsets.symmetric(horizontal: 4.0),
+                                labelStyle:
+                                    TextStyle(fontWeight: FontWeight.bold),
                               ),
                             ),
                           ),
-                          Expanded(
+                          SizedBox(
+                            height: 450,
                             child: TabBarView(
                               controller: _tabController,
                               children: [
                                 _buildDetailsTab(widget.whisky),
-                                Center(child: Text('Tasting Notes Content')),
-                                Center(child: Text('History Content')),
+                                Center(
+                                    child: Text(
+                                  'Tasting Notes Feature Coming Soon!!!',
+                                  style: ebGaramondTitleStyle(
+                                      fontSize: 18, color: Colors.white),
+                                )),
+                                Center(
+                                    child: Text(
+                                        'History Feature Coming Soon!!!',
+                                        style: ebGaramondTitleStyle(
+                                            fontSize: 18,
+                                            color: Colors.white))),
                               ],
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Add to collection logic
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.amber,
-                      minimumSize: const Size(70, 50),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                            10.0), // Adjust the radius as needed
+                    SizedBox(height: 16),
+                    ElevatedButton(
+                      onPressed: () {
+                        // Add to collection logic
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.amber,
+                        minimumSize: const Size(70, 50),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                      child: Text(
+                        '+ Add to my collection',
+                        style: ebGaramondTitleStyle(
+                            fontSize: 18, color: Colors.black),
                       ),
                     ),
-                    child: Text(
-                      '+ Add to my collection',
-                      style: ebGaramondTitleStyle(
-                          fontSize: 18, color: Colors.black),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ]),
-        ));
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   Widget _buildDetailsTab(Whisky whisky) {
@@ -218,7 +231,7 @@ class WhiskyDetailsScreenState extends State<WhiskyDetailsScreen>
         children: [
           Text(
             label,
-            style: ebGaramondTitleStyle(fontSize: 18, color: Colors.grey),
+            style: ebGaramondTitleStyle(fontSize: 18, color: Colors.white),
           ),
           Text(
             value,
