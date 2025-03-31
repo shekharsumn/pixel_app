@@ -63,13 +63,13 @@ class SplashScreenState extends State<SplashScreen>
     super.dispose();
   }
 
-  void _handleOutsideTap() {
+ /*  void _handleOutsideTap() {
     if (_isDrawerVisible) {
       hideDrawer();
     } else {
       showDrawer();
     }
-  }
+  } */
 
   void hideDrawer() {
     if (mounted) {
@@ -95,49 +95,45 @@ class SplashScreenState extends State<SplashScreen>
         listener: (context, state) {
           // Navigation is handled inside the Cubit
         },
-        child: GestureDetector(
-          onTap: _handleOutsideTap,
-          behavior: HitTestBehavior.opaque,
-          child: Scaffold(
-            backgroundColor: AppColor.primary,
-            body: Stack(
-              children: [
-                Positioned.fill(
-                  child: Image.asset(
-                    'assets/splash_bg.png',
-                    fit: BoxFit.cover,
+        child: Scaffold(
+          backgroundColor: AppColor.primary,
+          body: Stack(
+            children: [
+              Positioned.fill(
+                child: Image.asset(
+                  'assets/splash_bg.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
+              if (_showLogo)
+                FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: Center(
+                    child: Image.asset(
+                      'assets/ic_logo.png',
+                      width: 200,
+                      height: 300,
+                    ),
                   ),
                 ),
-                if (_showLogo)
-                  FadeTransition(
-                    opacity: _fadeAnimation,
-                    child: Center(
-                      child: Image.asset(
-                        'assets/ic_logo.png',
-                        width: 200,
-                        height: 300,
-                      ),
-                    ),
+              if (_isDrawerVisible)
+                AnimatedBuilder(
+                  animation: _slideAnimation,
+                  builder: (context, child) {
+                    return Transform.translate(
+                      offset: Offset(
+                          0,
+                          MediaQuery.of(context).size.height *
+                              _slideAnimation.value),
+                      child: child,
+                    );
+                  },
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: LandingBottomDrawer(),
                   ),
-                if (_isDrawerVisible)
-                  AnimatedBuilder(
-                    animation: _slideAnimation,
-                    builder: (context, child) {
-                      return Transform.translate(
-                        offset: Offset(
-                            0,
-                            MediaQuery.of(context).size.height *
-                                _slideAnimation.value),
-                        child: child,
-                      );
-                    },
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: LandingBottomDrawer(),
-                    ),
-                  ),
-              ],
-            ),
+                ),
+            ],
           ),
         ),
       ),

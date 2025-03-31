@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:one_cask/blocs/signin/signin_cubit.dart';
 import 'package:one_cask/blocs/signin/signin_state.dart';
+import 'package:one_cask/styles/ebgaramond.dart';
 import 'package:one_cask/widgets/password_textfield.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -133,7 +134,7 @@ class SignInScreen extends StatelessWidget {
                               10.0), // Adjust the radius as needed
                         ),
                       ),
-                      child: Text('Continue')),
+                      child: Text('Continue', style: ebGaramondBodyStyle(color: Colors.black),)),
                   SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
