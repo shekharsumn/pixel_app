@@ -5,8 +5,8 @@ import 'package:one_cask/blocs/signin/signin_state.dart';
 import 'package:one_cask/widgets/password_textfield.dart';
 
 class SignInScreen extends StatelessWidget {
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final _emailController = TextEditingController(text: 'email@email.com');
+  final _passwordController = TextEditingController(text: 'Password@123');
 
   SignInScreen({super.key});
 
@@ -43,13 +43,6 @@ class SignInScreen extends StatelessWidget {
         body: BlocConsumer<SignInCubit, SignInState>(
           listener: (context, state) {
             if (state is SignInSuccess) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                    content: Text(
-                  'Sign in successful!',
-                  style: textStyle16,
-                )),
-              );
               Navigator.pushNamed(context, '/home'); // Change route as needed
             } else if (state is SignInFailure) {
               ScaffoldMessenger.of(context).showSnackBar(
@@ -115,10 +108,22 @@ class SignInScreen extends StatelessWidget {
                   SizedBox(height: 20),
                   ElevatedButton(
                       onPressed: () {
-                        context.read<SignInCubit>().signIn(
-                              _emailController.text,
-                              _passwordController.text,
-                            );
+                        String email = _emailController.text.trim();
+                        String password = _passwordController.text.trim();
+
+                        if (email.isEmpty || password.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'Please enter both email and password.',
+                                style: textStyle16,
+                              ),
+                              backgroundColor: Colors.red,
+                            ),
+                          );
+                          return; // Stop execution if validation fails
+                        }
+                        context.read<SignInCubit>().signIn(email, password);
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.amber,
