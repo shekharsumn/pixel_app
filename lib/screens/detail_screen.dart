@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:one_cask/model/whisky_model.dart';
+import 'package:one_cask/screens/tasting_notes.dart';
+import 'package:one_cask/screens/timeline_screen.dart';
 import 'package:one_cask/styles/app_color.dart';
 import 'package:one_cask/styles/ebgaramond.dart';
 import 'package:one_cask/widgets/genuine_widget.dart';
@@ -154,18 +156,8 @@ class WhiskyDetailsScreenState extends State<WhiskyDetailsScreen>
                               controller: _tabController,
                               children: [
                                 _buildDetailsTab(widget.whisky),
-                                Center(
-                                    child: Text(
-                                  'Tasting Notes Feature Coming Soon!!!',
-                                  style: ebGaramondTitleStyle(
-                                      fontSize: 18, color: Colors.white),
-                                )),
-                                Center(
-                                    child: Text(
-                                        'History Feature Coming Soon!!!',
-                                        style: ebGaramondTitleStyle(
-                                            fontSize: 18,
-                                            color: Colors.white))),
+                                _buildTastingNotesTab(),
+                                _buildHistoryTab(),
                               ],
                             ),
                           ),
@@ -198,6 +190,14 @@ class WhiskyDetailsScreenState extends State<WhiskyDetailsScreen>
         ),
       ),
     );
+  }
+
+  _buildHistoryTab() {
+    return TimelineScreen();
+  }
+
+  _buildTastingNotesTab() {
+    return TastingNotesScreen();
   }
 
   Widget _buildDetailsTab(Whisky whisky) {
